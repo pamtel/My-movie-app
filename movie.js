@@ -11,7 +11,7 @@ function getAllMovies() {
     fetch(FEATURED_API)
     .then((res) => res.json())
     .then((data) => {
-        console.log(data);
+        // console.log(data);
         let displayMovies = data.results.map((movie) => {
             return `
             <div class="movie">
@@ -36,10 +36,7 @@ backwardIcon.addEventListener("click", () => {
 
 function movieSection(movies) {
     // console.log(movies,'func movies');
-    return movies.map((movie) => {
-        if (!value === movie.title) {
-            alert("Movie not found")
-        }  
+    return movies.map((movie) => { 
         if (movie.poster_path) {
             return `
         <div class="movie">
@@ -60,11 +57,10 @@ function createMovieContainer(movies) {
     const movieElement = document.createElement('div');
     movieElement.setAttribute('class', 'movieContainer');
 
-    const movieTemplate = (`
+    const movieTemplate = `
         <section class="main">
             ${movieSection(movies).join("")}
-        </section>`)
-        console.log(movies[0]);
+        </section>`
 
         movieElement.innerHTML = movieTemplate;
         // console.log({movieElement});
@@ -84,6 +80,7 @@ function renderSearchMovies(data) {
 }
 
 const fetchMovies = (url) => {
+    
     fetch(url)
     .then((res) => res.json())
     .then(renderSearchMovies) 
